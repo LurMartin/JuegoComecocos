@@ -3,12 +3,49 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package comecocos;
+package pmdm.trabajocomecocos;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.JFrame;
 
 /**
  *
- * @author Lourdes
+ * @author user
  */
-public class Vista {
+public class Vista extends JFrame{
+    private int ancho=600;
+    private int alto=600;
+    private Font font;
+    private String empezar="Pulse Intro para comenzar el juego";
+    private String titulo="COMECOCOS";
+    private Image imagen;
+    public Vista(int ancho,int alto){
+        this.alto=alto;
+        this.ancho=ancho;
+        this.setBounds(0, 0, ancho, alto);
+        font= new Font("Arial", Font.BOLD, 20);
+        this.setVisible(true);
+    }
     
+    public void paint(Graphics g){
+        g.setColor(Color.MAGENTA);
+        g.fillRect(0, 0, ancho, alto);
+        g.setColor(Color.WHITE);
+       // g.drawRect(xRect, yRect, 30, 30);
+        g.setFont(font);   
+        g.drawString(empezar,150, 100);
+        g.drawString(titulo, 250, 200);
+        g.drawImage(imagen, 150, 300, this);
+    }
+    
+    public void setEmpezar(String empezar){
+        this.empezar=empezar;
+    }
+    public void setTitutlo(String titulo){
+        this.titulo=titulo;
+    }
 }
+
