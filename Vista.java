@@ -44,7 +44,7 @@ public class Vista extends JFrame{
     public void setEmpezar(String empezar){
         this.empezar=empezar;
     }
-    public void setTitutlo(String titulo){
+    public void setTitulo(String titulo){
         this.titulo=titulo;
     }
 }
