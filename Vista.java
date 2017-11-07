@@ -26,7 +26,10 @@ public class Vista extends JFrame {
     private String empezar;
     private String titulo;
     private String puntos="0";
+    private String msg;
+    
     public Vista(int ancho,int alto){
+        this.msg="";
         this.alto=alto;
         this.ancho=ancho;
         //empezar="Haz click para comenzar el juego";
@@ -42,12 +45,14 @@ public class Vista extends JFrame {
         g.fillRect(0, 0, ancho, alto);
         personaje.dibujar(g);
         fantasma.dibujar(g);
+        vida.dibujar(g);
         g.setColor(Color.WHITE);
         g.setFont(font);   
         //g.drawString(empezar,150, 100);
         //g.drawString(titulo, 250, 200);
         g.drawString("Puntuación: ",10,modelo.ALTOGAME-30);
         g.drawString(puntos,130,modelo.ALTOGAME-30);
+        g.drawString(msg,100 , 100);
     }
     public void setSumarPuntos(int puntos){
         this.puntos=puntos+"";
@@ -57,5 +62,11 @@ public class Vista extends JFrame {
     }
     public void setFantasma(Fantasma fantasma){
         this.fantasma=fantasma;
+    }
+    public void setMsg(String msg){
+        this.msg=msg;
+    }
+    public void setVida(Vida vida){
+        this.vida=vida;
     }
 }

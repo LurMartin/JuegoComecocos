@@ -18,26 +18,26 @@ import javax.imageio.ImageIO;
  *
  * @author Lourdes
  */
-public class Fantasma {
+public class Vida {
     private Modelo modelo;
     private int x,y;
     private int ancho, alto;
-    private Image imgFantasma;
+    private Image imgVida;
     private boolean visible;
-    private Rectangle malla;
+    private Rectangle mallaV;
 
-    public Fantasma (Modelo modelo){
+    public Vida (Modelo modelo){
         this.modelo=modelo;
-        imgFantasma=this.leerFantasma();
-        ancho=imgFantasma.getWidth(null);
-        alto=imgFantasma.getHeight(null);
-        malla=new Rectangle(x,y,ancho,alto);
+        imgVida=this.leerVida();
+        ancho=imgVida.getWidth(null);
+        alto=imgVida.getHeight(null);
+        mallaV=new Rectangle(x,y,ancho,alto);
         visible=true;
         this.generarPosicion();
     }
-    public Image leerFantasma(){
+    public Image leerVida(){
         String RUTA="/img/";
-        String fichero="fantasma.png";
+        String fichero="vida.png";
         URL url=this.getClass().getResource(RUTA+fichero);
         Image imagen=null;
         try {
@@ -53,13 +53,13 @@ public class Fantasma {
     private int generarY(){
         return ((int)(Math.random()*(Modelo.ALTOGAME-alto)));
     }
-    public Rectangle getMalla(){
-        return malla;
+    public Rectangle getMallaV(){
+        return mallaV;
     }
     public void generarPosicion(){
         x=this.generarX();
         y=this.generarY();
-        malla.setLocation(x, y);
+        mallaV.setLocation(x, y);
     }
     public int getAnchoPers(){
         return ancho;
@@ -69,7 +69,15 @@ public class Fantasma {
     }
     public void dibujar(Graphics g){ 
         if(visible){
-            g.drawImage(imgFantasma, x, y, null);
+            g.drawImage(imgVida, x, y, null);
         }
+    }
+    public void setVisible(){
+        visible=false;
+        reiniciar();
+    }
+    public void reiniciar(){
+        generarPosicion();
+        visible=true;
     }
 }

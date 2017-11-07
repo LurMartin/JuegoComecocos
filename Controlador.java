@@ -5,10 +5,13 @@
  */
 package comecocos;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.Timer;
 
 /**
  *
@@ -25,12 +28,20 @@ public class Controlador implements MouseListener,KeyListener{
         personaje=modelo.getPersonaje();
         vista.setPersonaje(personaje);
         vista.setFantasma(modelo.getFantasma());
+        vista.setVida(modelo.getVida());
         this.vista=vista;
         vista.addKeyListener(this);
         vista.addMouseListener(this);
-        
+        //timer.start();
     }
-
+    /*
+    Timer timer=new Timer (1000,new ActionListener(){
+        public void actionPerformed(ActionEvent e){
+            vista.setFantasma(modelo.getFantasma());
+        }
+    });
+    */
+    
     @Override
     public void keyTyped(KeyEvent ke) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -52,6 +63,8 @@ public class Controlador implements MouseListener,KeyListener{
         }else if(e.getKeyCode()==KeyEvent.VK_RIGHT){
             personaje.setX(modelo.moverDerPers()); 
         }
+        vista.setMsg(personaje.getMsg());
+        vista.setSumarPuntos(modelo.getSumarPuntos());
         vista.repaint();
     }
 

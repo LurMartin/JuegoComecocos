@@ -26,6 +26,7 @@ public class Personaje {
     private Image imgPersonaje;
     private boolean visible;
     private Rectangle malla;
+    private String msg="";
 
     public Personaje (Modelo modelo){
         this.modelo=modelo;
@@ -56,13 +57,28 @@ public class Personaje {
         return x;
     }
     public void setX(int x) {
-        this.x = x;
+        if(!validarPosicion()){
+            msg="Fin del juego";  
+        }else if(!validarPosicionVida()){
+            modelo.setSumarPuntos();
+        }else{
+            this.x = x;
+            malla.setLocation(x,y);
+        }
     }
     public int getY(){
         return y;
     }
     public void setY(int y) {
-        this.y = y;
+        if(!validarPosicion()){
+            msg="Fin del juego";  
+        }else if(!validarPosicionVida()){
+            modelo.setSumarPuntos();
+            
+        }else{
+            this.y = y;
+            malla.setLocation(x,y);
+        }
     }
     public Image getPersonaje(){
         return imgPersonaje;
@@ -76,5 +92,28 @@ public class Personaje {
     public void dibujar(Graphics g){ 
         g.drawImage(imgPersonaje, x, y, null);
     }
-    
+    public boolean validarPosicion(){
+        boolean colision=true;
+        Fantasma otra= modelo.getFantasma();;  
+        Rectangle mallaOtra= otra.getMalla();
+        System.out.println(malla);
+        if(malla.intersects(mallaOtra)){
+            colision=false;
+        }
+        return colision;
+    }
+    public boolean validarPosicionVida(){
+        boolean colision=true;
+        Vida otraVida=modelo.getVida();
+        Rectangle mallaOtraVida=otraVida.getMallaV();
+        System.out.println(malla);
+        if(malla.intersects(mallaOtraVida)){
+            colision=false;
+            otraVida.setVisible();
+        }
+        return colision;
+    }
+    public String getMsg(){
+        return msg;
+    }
 }

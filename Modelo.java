@@ -21,44 +21,23 @@ public class Modelo {
     public static final int ALTOGAME=700;
     private Personaje personaje;
     private Fantasma fantasma;
+    private Vida vida;
     private int puntos, y, x;
-    private boolean fin;
-    
     
     public Modelo(){
         personaje=new Personaje(this);
         x=10;
         y=10;
         fantasma=new Fantasma(this);
+        vida=new Vida(this);
     }
-    
     public int getSumarPuntos(){
-        return puntos+=10; //Se suman 10 puntos cada vez que se coje una vida
+        return puntos; //Se suman 10 puntos cada vez que se coje una vida
     }
-    /*
-    public void choqueFantasma(){
-        boolean muerto=false;
-        if(xPersonaje==xFantasma && yPersonaje==yFantasma){ //Usar funcion intersect
-            muerto=true;
-        }
-        if(muerto){
-            reiniciarJuego();
-        }
-        //Si la posicion del personaje coincide con la posicion del fantasma entonces han chocado
-        //llamada a la funcion reiniciarJuego()
+    public void setSumarPuntos(){
+        puntos+=10;
+        System.out.println("puntos: "+puntos );
     }
-    public void choqueVida(){
-        boolean vida=false;
-        if(xPersonaje==xVida && yPersonaje==yVida){ //Usar funcion intersect
-            vida=true;
-        }
-        if(vida){
-            getSumarPuntos();
-        }
-        //Si choca con una vida
-        //llamada a sumarPuntos();
-    }
-*/
     public Personaje getPersonaje(){
         return personaje;
     }
@@ -92,5 +71,8 @@ public class Modelo {
     }
     public Fantasma getFantasma(){
         return fantasma;
+    }
+    public Vida getVida(){
+        return vida;
     }
 }
