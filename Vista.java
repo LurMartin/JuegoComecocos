@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pmdm.trabajocomecocos;
+package comecocos;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,64 +13,49 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author user
+ * @author Lourdes
  */
-public class Vista extends JFrame{
-    private int ancho=600;
-    private int alto=600;
+public class Vista extends JFrame {
+    private Personaje personaje;
+    private Modelo modelo;
+    private Fantasma fantasma;
+    private Vida vida;
+    private int ancho;
+    private int alto;
     private Font font;
-    private String empezar="Pulse Intro para comenzar el juego";
-    private String titulo="COMECOCOS";
-    private Image imagen;
+    private String empezar;
+    private String titulo;
+    private String puntos="0";
     public Vista(int ancho,int alto){
         this.alto=alto;
         this.ancho=ancho;
-        this.setBounds(0, 0, ancho, alto);
+        //empezar="Haz click para comenzar el juego";
+        titulo="COMECOCOS";
+        this.setBounds(10, 10, ancho, alto);
         font= new Font("Arial", Font.BOLD, 20);
+        this.setUndecorated(true);
         this.setVisible(true);
     }
     
     public void paint(Graphics g){
         g.setColor(Color.MAGENTA);
         g.fillRect(0, 0, ancho, alto);
+        personaje.dibujar(g);
+        fantasma.dibujar(g);
         g.setColor(Color.WHITE);
-       // g.drawRect(xRect, yRect, 30, 30);
         g.setFont(font);   
-        g.drawString(empezar,150, 100);
-        g.drawString(titulo, 250, 200);
-        g.drawImage(imagen, 150, 300, this);
-    }
-    
-    public void setEmpezar(String empezar){
-        this.empezar=empezar;
-    }
-    public void setTitulo(String titulo){
-        this.titulo=titulo;
-    }
-    public void setPosicionXPersonaje(int xPersonaje){
-        this.xPersonaje=xPersonaje;
-    }
-    public void setPosicionYPersonaje(int yPersonaje){
-        this.yPersonaje=yPersonaje;
-    }
-    public void setPosicionXFantasma(int xFantasma){
-        this.xFantasma=xFantasma;
-    }
-    public void setPosicionYFantasma(int yFantasma){
-        this.yFantasma=yFantasma;
-    }
-    public void setPosicionXVida(int xVida){
-        this.xVida=xVida;
-    }
-    public void setPosicionYVida(int yVida){
-        this.yVida=yVida;
+        //g.drawString(empezar,150, 100);
+        //g.drawString(titulo, 250, 200);
+        g.drawString("Puntuación: ",10,modelo.ALTOGAME-30);
+        g.drawString(puntos,130,modelo.ALTOGAME-30);
     }
     public void setSumarPuntos(int puntos){
-        this.puntos=puntos;
+        this.puntos=puntos+"";
     }
-    public void setImagen(Image personaje){
-        this.imagen=personaje;
+    public void setPersonaje(Personaje personaje){
+        this.personaje=personaje;
+    }
+    public void setFantasma(Fantasma fantasma){
+        this.fantasma=fantasma;
     }
 }
-
-

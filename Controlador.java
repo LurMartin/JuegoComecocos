@@ -17,12 +17,14 @@ import java.awt.event.MouseListener;
 public class Controlador implements MouseListener,KeyListener{
     private Vista vista;
     private Modelo modelo;
-    private int y=0;
-    private int x=0;
+    private Personaje personaje;
+    
     public Controlador(){
         modelo=new Modelo();
-        vista=new Vista(Modelo.ANCHOGAME, Modelo.ALTOGAME);
-        vista.setImagen(modelo.imgPersonaje());
+        vista=new Vista(modelo.ANCHOGAME, modelo.ALTOGAME);
+        personaje=modelo.getPersonaje();
+        vista.setPersonaje(personaje);
+        vista.setFantasma(modelo.getFantasma());
         this.vista=vista;
         vista.addKeyListener(this);
         vista.addMouseListener(this);
@@ -36,25 +38,21 @@ public class Controlador implements MouseListener,KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+ 
         if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
             System.exit(0);
         }
-         switch (e.getKeyCode()) { 
-            case KeyEvent.VK_DOWN: 
-                vista.setPosicionYPersonaje(modelo.getPosicionYPersonaje()+y++); 
-                break; 
-            case KeyEvent.VK_UP: 
-                vista.setPosicionYPersonaje(modelo.getPosicionYPersonaje()+y--);; 
-                break; 
-            case KeyEvent.VK_LEFT: 
-                vista.setPosicionXPersonaje(modelo.getPosicionXPersonaje()+x--); 
-                break; 
-            case KeyEvent.VK_RIGHT: 
-                 vista.setPosicionXPersonaje(modelo.getPosicionXPersonaje()+x++); 
-                break; 
-        } 
-         vista.repaint();
+        
+        if(e.getKeyCode()==KeyEvent.VK_DOWN){
+            personaje.setY(modelo.moverAbajoPers()); 
+        }else if(e.getKeyCode()==KeyEvent.VK_UP){
+            personaje.setY(modelo.moverArribaPers());
+        }else if(e.getKeyCode()==KeyEvent.VK_LEFT){
+            personaje.setX(modelo.moverIzqPers()); 
+        }else if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+            personaje.setX(modelo.moverDerPers()); 
+        }
+        vista.repaint();
     }
 
     @Override
@@ -64,9 +62,9 @@ public class Controlador implements MouseListener,KeyListener{
 
     @Override
     public void mouseClicked(MouseEvent me) {
-        vista.setEmpezar(modelo.getEmpezar());
-        vista.setSumarPuntos(modelo.getSumarPuntos());
-        vista.repaint();
+        //vista.setEmpezar(modelo.getEmpezar());
+        //vista.setSumarPuntos(modelo.getSumarPuntos());
+        //vista.repaint();
     }
 
     @Override
