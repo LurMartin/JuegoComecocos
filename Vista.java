@@ -47,5 +47,30 @@ public class Vista extends JFrame{
     public void setTitulo(String titulo){
         this.titulo=titulo;
     }
+    public void setPosicionXPersonaje(int xPersonaje){
+        this.xPersonaje=xPersonaje;
+    }
+    public void setPosicionYPersonaje(int yPersonaje){
+        this.yPersonaje=yPersonaje;
+    }
+    public void setPosicionXFantasma(int xFantasma){
+        this.xFantasma=xFantasma;
+    }
+    public void setPosicionYFantasma(int yFantasma){
+        this.yFantasma=yFantasma;
+    }
+    public void setPosicionXVida(int xVida){
+        this.xVida=xVida;
+    }
+    public void setPosicionYVida(int yVida){
+        this.yVida=yVida;
+    }
+    public void setSumarPuntos(int puntos){
+        this.puntos=puntos;
+    }
+    public void setImagen(Image personaje){
+        this.imagen=personaje;
+    }
 }
+
 
