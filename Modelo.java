@@ -45,6 +45,7 @@ public class Modelo {
         }
         return imagen;
     }
+    
     public Image imgFantasma(){
         String RUTA="/img/";
         String fichero="fantasma.png";
@@ -124,4 +125,8 @@ public class Modelo {
         //Si choca con una vida
         //llamada a sumarPuntos();
     }
+    public String getEmpezar(){
+        return "Haz click para comenzar el juego";
+    }
+    
 }

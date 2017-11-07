@@ -9,13 +9,13 @@ package comecocos;
  *
  * @author Lourdes
  */
-public class Comecocos {
+public class Comecocos  {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Controlador c=new Controlador();
     }
     
 }
