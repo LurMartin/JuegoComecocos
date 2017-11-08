@@ -27,20 +27,13 @@ public class Controlador implements MouseListener,KeyListener{
         vista=new Vista(modelo.ANCHOGAME, modelo.ALTOGAME);
         personaje=modelo.getPersonaje();
         vista.setPersonaje(personaje);
-        vista.setFantasma(modelo.getFantasma());
+        vista.setFantasma(modelo.getFantasmas());
         vista.setVida(modelo.getVida());
         this.vista=vista;
         vista.addKeyListener(this);
         vista.addMouseListener(this);
-        //timer.start();
     }
-    /*
-    Timer timer=new Timer (1000,new ActionListener(){
-        public void actionPerformed(ActionEvent e){
-            vista.setFantasma(modelo.getFantasma());
-        }
-    });
-    */
+
     
     @Override
     public void keyTyped(KeyEvent ke) {

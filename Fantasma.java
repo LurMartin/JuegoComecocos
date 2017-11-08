@@ -8,11 +8,14 @@ package comecocos;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
 
 /**
  *
@@ -33,7 +36,13 @@ public class Fantasma {
         alto=imgFantasma.getHeight(null);
         malla=new Rectangle(x,y,ancho,alto);
         visible=true;
-        this.generarPosicion();
+        
+        Timer timer=new Timer (1000,new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                generarPosicion();
+            }
+        });
+        timer.start();
     }
     public Image leerFantasma(){
         String RUTA="/img/";

@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /**
@@ -18,7 +19,7 @@ import javax.swing.JFrame;
 public class Vista extends JFrame {
     private Personaje personaje;
     private Modelo modelo;
-    private Fantasma fantasma;
+    private ArrayList <Fantasma> fantasmas;
     private Vida vida;
     private int ancho;
     private int alto;
@@ -44,8 +45,10 @@ public class Vista extends JFrame {
         g.setColor(Color.MAGENTA);
         g.fillRect(0, 0, ancho, alto);
         personaje.dibujar(g);
-        fantasma.dibujar(g);
         vida.dibujar(g);
+        for(int i=0;i<fantasmas.size();i++){
+            fantasmas.get(i).dibujar(g);
+        }
         g.setColor(Color.WHITE);
         g.setFont(font);   
         //g.drawString(empezar,150, 100);
@@ -60,8 +63,8 @@ public class Vista extends JFrame {
     public void setPersonaje(Personaje personaje){
         this.personaje=personaje;
     }
-    public void setFantasma(Fantasma fantasma){
-        this.fantasma=fantasma;
+    public void setFantasma(ArrayList <Fantasma> fantasmas){
+        this.fantasmas=fantasmas;
     }
     public void setMsg(String msg){
         this.msg=msg;

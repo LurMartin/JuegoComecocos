@@ -94,11 +94,17 @@ public class Personaje {
     }
     public boolean validarPosicion(){
         boolean colision=true;
-        Fantasma otra= modelo.getFantasma();;  
-        Rectangle mallaOtra= otra.getMalla();
-        System.out.println(malla);
-        if(malla.intersects(mallaOtra)){
-            colision=false;
+        ArrayList <Fantasma> lista=modelo.getFantasmas();
+        Fantasma otra;  
+        Rectangle mallaOtra;
+        for(int i=0;i<lista.size();i++){
+            otra=lista.get(i);
+            //if(this==otra) continue;
+            mallaOtra=otra.getMalla();
+            if(malla.intersects(mallaOtra)){
+                colision=false;
+                break;
+             }
         }
         return colision;
     }
