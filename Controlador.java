@@ -20,12 +20,10 @@ import javax.swing.Timer;
 public class Controlador implements KeyListener{
     private Vista vista;
     private Modelo modelo;
-    private Personaje personaje;
     
     public Controlador(){
         modelo=new Modelo();
         vista=new Vista(modelo.ANCHOGAME, modelo.ALTOGAME);
-        personaje=modelo.getPersonaje();
         this.vista=vista;
         vista.addKeyListener(this);
     }
@@ -43,7 +41,7 @@ public class Controlador implements KeyListener{
             vista.setVida(modelo.getVida());
             vista.setFantasma(modelo.getFantasmas());
             modelo.reiniciar();
-            vista.setMsg(personaje.getMsg());
+            vista.setMsg(modelo.setMsg());
             vista.repaint();
         }
         /*AL pulsar ESC se sale del juego y se cierra la ventana*/
@@ -52,15 +50,15 @@ public class Controlador implements KeyListener{
         }
         /*CONTROL DEL PERSONAJE DEL JUEGO, con las teclas de flechas del teclado se modifica la posición del personaje*/
         if(e.getKeyCode()==KeyEvent.VK_DOWN){
-            personaje.setY(modelo.moverAbajoPers()); 
+            modelo.enviarY(modelo.moverAbajoPers()); 
         }else if(e.getKeyCode()==KeyEvent.VK_UP){
-            personaje.setY(modelo.moverArribaPers());
+            modelo.enviarY(modelo.moverArribaPers());
         }else if(e.getKeyCode()==KeyEvent.VK_LEFT){
-            personaje.setX(modelo.moverIzqPers()); 
+            modelo.enviarX(modelo.moverIzqPers()); 
         }else if(e.getKeyCode()==KeyEvent.VK_RIGHT){
-            personaje.setX(modelo.moverDerPers()); 
+            modelo.enviarX(modelo.moverDerPers()); 
         }
-        vista.setMsg(personaje.getMsg());//aparece un mensaje de fin de juego si se choca el personaje con un fantasma
+        vista.setMsg(modelo.setMsg());//aparece un mensaje de fin de juego si se choca el personaje con un fantasma
         vista.setSumarPuntos(modelo.getSumarPuntos()); //Aumenta el contador si se come una vida
         vista.repaint();
     }

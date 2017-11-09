@@ -28,6 +28,7 @@ public class Vista extends JFrame {
     private String msg;
     
     public Vista(int ancho,int alto){
+        this.msg="PULSA INTRO PARA COMENZAR";
         this.alto=alto;
         this.ancho=ancho;
         this.setBounds(10, 10, ancho, alto);
@@ -39,15 +40,17 @@ public class Vista extends JFrame {
     public void paint(Graphics g){
         g.setColor(Color.MAGENTA);
         g.fillRect(0, 0, ancho, alto);
-        personaje.dibujar(g);
-        vida.dibujar(g);
-        for(int i=0;i<fantasmas.size();i++){
-            fantasmas.get(i).dibujar(g);
-        }
         g.setColor(Color.WHITE);
-        g.setFont(font);   
-        g.drawString("Puntuación: ",10,modelo.ALTOGAME-30);
-        g.drawString(puntos,130,modelo.ALTOGAME-30);
+        g.setFont(font);  
+        if(personaje!=null){
+            personaje.dibujar(g);
+            vida.dibujar(g);
+            for(int i=0;i<fantasmas.size();i++){
+                fantasmas.get(i).dibujar(g);
+            }
+            g.drawString("Puntuación: ",10,modelo.ALTOGAME-30);
+            g.drawString(puntos,130,modelo.ALTOGAME-30);
+        }
         g.drawString(msg,100 , 100);
     }
     

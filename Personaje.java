@@ -61,7 +61,7 @@ public class Personaje {
     }
     public void setX(int x) {
         if(!validarPosicion()){
-            msg="Fin del juego";  
+            msg="FIN DEL JUEGO";  
             fin=true;
         }else if(!validarPosicionVida()){
             modelo.setSumarPuntos();
@@ -78,7 +78,7 @@ public class Personaje {
     }
     public void setY(int y) {
         if(!validarPosicion()){
-            msg="Fin del juego"; 
+            msg="FIN DEL JUEGO"; 
             fin=true;
         }else if(!validarPosicionVida()){
             modelo.setSumarPuntos();
@@ -110,7 +110,6 @@ public class Personaje {
         Rectangle mallaOtra;
         for(int i=0;i<lista.size();i++){
             otra=lista.get(i);
-            //if(this==otra) continue;
             mallaOtra=otra.getMalla();
             if(malla.intersects(mallaOtra)){
                 colision=false;
@@ -123,7 +122,6 @@ public class Personaje {
         boolean colision=true;
         Vida otraVida=modelo.getVida();
         Rectangle mallaOtraVida=otraVida.getMallaV();
-        System.out.println(malla);
         if(malla.intersects(mallaOtraVida)){
             colision=false;
             otraVida.setVisible();

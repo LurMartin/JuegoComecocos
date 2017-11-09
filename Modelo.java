@@ -42,7 +42,6 @@ public class Modelo {
     }
     public void setSumarPuntos(){
         puntos+=10; //Se suman 10 puntos cada vez que se coje una vida
-        System.out.println("puntos: "+puntos );
     }
     public ArrayList <Fantasma> getFantasmas(){
         return fantasmas;
@@ -90,5 +89,14 @@ public class Modelo {
         puntos=0;
         fin=false;
         personaje.setFin(fin);
+    }
+    public String setMsg(){
+        return personaje.getMsg();
+    }
+    public void enviarY(int y){
+        personaje.setY(y);
+    }
+    public void enviarX(int x){
+        personaje.setX(x);
     }
 }
