@@ -24,17 +24,12 @@ public class Vista extends JFrame {
     private int ancho;
     private int alto;
     private Font font;
-    private String empezar;
-    private String titulo;
     private String puntos="0";
     private String msg;
     
     public Vista(int ancho,int alto){
-        this.msg="";
         this.alto=alto;
         this.ancho=ancho;
-        //empezar="Haz click para comenzar el juego";
-        titulo="COMECOCOS";
         this.setBounds(10, 10, ancho, alto);
         font= new Font("Arial", Font.BOLD, 20);
         this.setUndecorated(true);
@@ -51,12 +46,11 @@ public class Vista extends JFrame {
         }
         g.setColor(Color.WHITE);
         g.setFont(font);   
-        //g.drawString(empezar,150, 100);
-        //g.drawString(titulo, 250, 200);
         g.drawString("Puntuación: ",10,modelo.ALTOGAME-30);
         g.drawString(puntos,130,modelo.ALTOGAME-30);
         g.drawString(msg,100 , 100);
     }
+    
     public void setSumarPuntos(int puntos){
         this.puntos=puntos+"";
     }

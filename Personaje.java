@@ -26,7 +26,8 @@ public class Personaje {
     private Image imgPersonaje;
     private boolean visible;
     private Rectangle malla;
-    private String msg="";
+    private String msg;
+    private boolean fin; 
 
     public Personaje (Modelo modelo){
         this.modelo=modelo;
@@ -36,6 +37,8 @@ public class Personaje {
         x=10;
         y=10;
         malla=new Rectangle(x,y,ancho,alto);
+        msg="";
+        fin=false;
         visible=true;
     }
     public Image leerPersonaje(){
@@ -59,11 +62,15 @@ public class Personaje {
     public void setX(int x) {
         if(!validarPosicion()){
             msg="Fin del juego";  
+            fin=true;
         }else if(!validarPosicionVida()){
             modelo.setSumarPuntos();
         }else{
-            this.x = x;
-            malla.setLocation(x,y);
+            if(!fin){
+                msg="";
+                this.x = x;
+                malla.setLocation(x,y);
+            }
         }
     }
     public int getY(){
@@ -71,13 +78,17 @@ public class Personaje {
     }
     public void setY(int y) {
         if(!validarPosicion()){
-            msg="Fin del juego";  
+            msg="Fin del juego"; 
+            fin=true;
         }else if(!validarPosicionVida()){
             modelo.setSumarPuntos();
             
         }else{
-            this.y = y;
-            malla.setLocation(x,y);
+            if(!fin){
+                msg="";
+                this.y = y;
+                malla.setLocation(x,y);
+            }
         }
     }
     public Image getPersonaje(){
@@ -121,5 +132,12 @@ public class Personaje {
     }
     public String getMsg(){
         return msg;
+    }
+    public boolean isFin(){
+        return fin;
+    }
+    public void setFin(boolean fin){
+        this.fin=fin;
+        msg="¡¡EMPIEZA A JUGAR!!!";
     }
 }

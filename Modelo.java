@@ -21,18 +21,16 @@ public class Modelo {
     public static final int ANCHOGAME=1000;
     public static final int ALTOGAME=700;
     private Personaje personaje;
-   //private Fantasma fantasma2;
     private ArrayList <Fantasma> fantasmas;
     private int NFANTASMAS=3;
     private Vida vida;
     private int puntos, y, x;
+    boolean fin;
  
-    
     public Modelo(){
         personaje=new Personaje(this);
-       x=10;
+        x=10;
         y=10;
-        //fantasma=new Fantasma(this);
         vida=new Vida(this);
         fantasmas=new ArrayList <Fantasma> ();
         for(int i=0;i<NFANTASMAS;i++){
@@ -40,15 +38,22 @@ public class Modelo {
         }
     }
     public int getSumarPuntos(){
-        return puntos; //Se suman 10 puntos cada vez que se coje una vida
+        return puntos; 
     }
     public void setSumarPuntos(){
-        puntos+=10;
+        puntos+=10; //Se suman 10 puntos cada vez que se coje una vida
         System.out.println("puntos: "+puntos );
+    }
+    public ArrayList <Fantasma> getFantasmas(){
+        return fantasmas;
+    }
+    public Vida getVida(){
+        return vida;
     }
     public Personaje getPersonaje(){
         return personaje;
     }
+    /*En los siguiente métodos se indica la fución a aplicar en el personaje segun la flecha pulsada*/
     public int moverAbajoPers(){
         y+=10;
         if(y > (ALTOGAME-(personaje.getAltoPers()))){
@@ -77,10 +82,13 @@ public class Modelo {
         }
         return x;
     }
-    public ArrayList <Fantasma> getFantasmas(){
-        return fantasmas;
+    //Fin funciones de movimiento
+    public void setFin(){
+        this.fin=personaje.isFin();
     }
-    public Vida getVida(){
-        return vida;
+    public void reiniciar(){
+        puntos=0;
+        fin=false;
+        personaje.setFin(fin);
     }
 }

@@ -17,7 +17,7 @@ import javax.swing.Timer;
  *
  * @author Lourdes
  */
-public class Controlador implements MouseListener,KeyListener{
+public class Controlador implements KeyListener{
     private Vista vista;
     private Modelo modelo;
     private Personaje personaje;
@@ -26,27 +26,31 @@ public class Controlador implements MouseListener,KeyListener{
         modelo=new Modelo();
         vista=new Vista(modelo.ANCHOGAME, modelo.ALTOGAME);
         personaje=modelo.getPersonaje();
-        vista.setPersonaje(personaje);
-        vista.setFantasma(modelo.getFantasmas());
-        vista.setVida(modelo.getVida());
         this.vista=vista;
         vista.addKeyListener(this);
-        vista.addMouseListener(this);
     }
-
     
     @Override
     public void keyTyped(KeyEvent ke) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
- 
+        /*Al pulsar INTRO se inicia el juego y aparecen el personaje, la vida y los fantasmas*/
+        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+            vista.setPersonaje(modelo.getPersonaje());
+            vista.setVida(modelo.getVida());
+            vista.setFantasma(modelo.getFantasmas());
+            modelo.reiniciar();
+            vista.setMsg(personaje.getMsg());
+            vista.repaint();
+        }
+        /*AL pulsar ESC se sale del juego y se cierra la ventana*/
         if(e.getKeyCode()==KeyEvent.VK_ESCAPE){
             System.exit(0);
         }
-        
+        /*CONTROL DEL PERSONAJE DEL JUEGO, con las teclas de flechas del teclado se modifica la posición del personaje*/
         if(e.getKeyCode()==KeyEvent.VK_DOWN){
             personaje.setY(modelo.moverAbajoPers()); 
         }else if(e.getKeyCode()==KeyEvent.VK_UP){
@@ -56,41 +60,16 @@ public class Controlador implements MouseListener,KeyListener{
         }else if(e.getKeyCode()==KeyEvent.VK_RIGHT){
             personaje.setX(modelo.moverDerPers()); 
         }
-        vista.setMsg(personaje.getMsg());
-        vista.setSumarPuntos(modelo.getSumarPuntos());
+        vista.setMsg(personaje.getMsg());//aparece un mensaje de fin de juego si se choca el personaje con un fantasma
+        vista.setSumarPuntos(modelo.getSumarPuntos()); //Aumenta el contador si se come una vida
         vista.repaint();
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
-    @Override
-    public void mouseClicked(MouseEvent me) {
-        //vista.setEmpezar(modelo.getEmpezar());
-        //vista.setSumarPuntos(modelo.getSumarPuntos());
-        //vista.repaint();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent me) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent me) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent me) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseExited(MouseEvent me) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     
 }
